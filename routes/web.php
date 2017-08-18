@@ -15,3 +15,5 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 $app->get('api/v1/products', 'ProductController@index');
+$app->get('api/v1/product/{id}', 'ProductController@show');
+$app->get('api/v1/link', 'ProductController@test');
