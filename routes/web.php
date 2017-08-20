@@ -14,6 +14,12 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
-$app->get('api/v1/products', 'ProductController@index');
+$app->group(['prefix'=>'api/v1'], function() use($app){
+$app->get('/products', 'ProductController@index');
+$app->post('/product', 'ProductController@create');
+$app->get('/product/{id}', 'ProductController@show');
+$app->put('/product/{id}', 'ProductController@update');
+$app->delete('product/{id}', 'ProductController@delete');
+});
 $app->get('api/v1/product/{id}', 'ProductController@show');
 $app->get('api/v1/link', 'ProductController@test');

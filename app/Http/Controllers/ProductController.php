@@ -60,7 +60,7 @@ class ProductController extends Controller
 
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->description- = $request->description;
+        $product->description = $request->description;
         if($product->save()){
             return response()->json([
                'data'=> 'updated successfully',
