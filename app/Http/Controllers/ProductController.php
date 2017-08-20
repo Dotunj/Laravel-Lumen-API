@@ -24,27 +24,17 @@ class ProductController extends Controller
 
      public function create(Request $request)
      {
-       $this->validate($request, [
-       'name'=>'required|min:5',
-       'price'=>'required|min:3',
-       'description'=>'required|min:7',
-     ]);
-       $product = new Product;
+        $product = new Product;
 
        $product->name= $request->name;
        $product->price = $request->price;
        $product->description= $request->description;
-       if($product->save()) {
-        return response()->json([
-         'data'=>'stored',
-          'status'=>200,
-        ]);
-       } else {
-        return response()->json([
-          'error'=>'could not store',
-           'status'=>500,
-        ]);
-       } 
+       
+       $product->save();
+
+       //$product = Product::create($request->all());
+
+       return response()->json($product);
      }
 
      public function show($id)
@@ -55,38 +45,22 @@ class ProductController extends Controller
      }
 
      public function update(Request $request, $id)
-     {
+     { 
         $product= Product::find($id);
-
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->description = $request->description;
-        if($product->save()){
-            return response()->json([
-               'data'=> 'updated successfully',
-               'status'=>200,
-            ]);
-        }else{
-            return response()->json([
-             'error'=>'could not update',
-              'status'=>500,
-             ]);
-        }
+        
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->save();
+        return response()->json($product);
      }
 
      public function destroy($id)
      {
-        $product = Product::findorFail($id)->delete();
+        $product = Product::find($id);
+        $product->delete();
 
-         return response()->json($product);
-     }
-
-     public function test()
-     {
-        return response()->json([
-         'success'=> 'it works',
-          'status'=>200,
-        ]);
+         return response()->json('product removed successfully');
      }
 
 

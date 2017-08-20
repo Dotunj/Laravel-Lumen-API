@@ -19,7 +19,6 @@ $app->get('/products', 'ProductController@index');
 $app->post('/product', 'ProductController@create');
 $app->get('/product/{id}', 'ProductController@show');
 $app->put('/product/{id}', 'ProductController@update');
-$app->delete('product/{id}', 'ProductController@delete');
 });
-$app->get('api/v1/product/{id}', 'ProductController@show');
+$app->delete('api/v1/product/{id}', 'ProductController@destroy');
 $app->get('api/v1/link', 'ProductController@test');
