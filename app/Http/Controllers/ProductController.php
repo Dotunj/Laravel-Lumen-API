@@ -13,7 +13,7 @@ class ProductController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function allProducts()
     {
      
      $products = Product::all();
@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     }
 
-     public function create(Request $request)
+     public function createProduct(Request $request)
      {
         $product = new Product;
 
@@ -37,14 +37,14 @@ class ProductController extends Controller
        return response()->json($product);
      }
 
-     public function show($id)
+     public function showProduct($id)
      {
         $product = Product::find($id);
 
         return response()->json($product);
      }
 
-     public function update(Request $request, $id)
+     public function updateProduct(Request $request, $id)
      { 
         $product= Product::find($id);
         
@@ -55,7 +55,7 @@ class ProductController extends Controller
         return response()->json($product);
      }
 
-     public function destroy($id)
+     public function destroyProduct($id)
      {
         $product = Product::find($id);
         $product->delete();
