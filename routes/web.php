@@ -15,9 +15,9 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 $app->group(['prefix'=>'api/v1'], function() use($app){
-$app->get('/products', 'ProductController@allProducts');
-$app->post('/products', 'ProductController@createProduct');
-$app->get('/products/{id}', 'ProductController@showProduct');
-$app->put('/products/{id}', 'ProductController@updateProduct');
-$app->delete('products/{id}', 'ProductController@destroyProduct');
+$app->get('/product', 'ProductController@index');
+$app->post('/product', 'ProductController@create');
+$app->get('/product/{id}', 'ProductController@show');
+$app->put('/product/{id}', 'ProductController@update');
+$app->delete('/product/{id}', 'ProductController@destroy');
 });
